@@ -12,6 +12,9 @@ on:
     paths:
       - 'order-service/**'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest

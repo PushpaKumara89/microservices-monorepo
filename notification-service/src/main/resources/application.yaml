@@ -3,3 +3,5 @@ spring:
     name: notification-service
 server:
   port: 8083
+
+  #workflow permission
