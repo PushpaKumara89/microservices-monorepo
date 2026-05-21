@@ -1,0 +1,40 @@
+name: Order Service CI
+
+# the magic is here
+# run this CI only change order-service folder.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'order-service/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'order-service/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      # Build and Test Spring Boot App
+      - name: Build with Maven
+        run: |
+          cd order-service
+          mvn clean package
+
+      # Docker Build (next step will push the image to docker hub)
+      - name: Build Docker Image
+        run: |
+          cd order-service
+          docker build -t order-service:${{ github.sha }} .
