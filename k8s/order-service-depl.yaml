@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: pushpakumara/order-service:v14
+        image: pushpakumara/order-service:v15
         resources:
           limits:
             memory: "128Mi"
