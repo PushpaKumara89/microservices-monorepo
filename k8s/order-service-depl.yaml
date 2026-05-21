@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: order-service
-        image: pushpakumara/order-service:{{ github.run_number }}
+        image: pushpakumara/order-service:v9
         resources:
           limits:
             memory: "128Mi"
