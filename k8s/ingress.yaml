@@ -3,30 +3,33 @@ kind: Ingress
 metadata:
   name: ingress-spring
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
+  ingressClassName: nginx
   rules:
-  - host: spring-microservice-k8s.com
-    http:
-      paths:
-      - path: /order-service
-        pathType: Prefix
-        backend:
-          service:
-            name: order-service-svc
-            port: 
-              number: 8082
-      - path: /product-service
-        pathType: Prefix
-        backend:
-          service:
-            name: product-service-svc
-            port: 
-              number: 8081
-      - path: /notification-service
-        pathType: Prefix
-        backend:
-          service:
-            name: notification-service
-            port: 
-              number: 8083
+    - host: spring-microservice-k8s.com
+      http:
+        paths:
+          - path: /order-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: order-service-svc
+                port:
+                  number: 8082
+
+          - path: /product-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: product-service-svc
+                port:
+                  number: 8081
+
+          - path: /notification-service(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: notification-service-svc
+                port:
+                  number: 8083
