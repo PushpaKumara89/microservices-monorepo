@@ -53,7 +53,7 @@ jobs:
       - name: Update Image Tag in K8s Manifest
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
-          sed -i "s|image: pushpakumara/notification-service:.*|image: pushpakumara/notification-service:${{ github.run_number }}|g" k8s/notification-service.yaml
+          sed -i "s|image: pushpakumara/notification-service:.*|image: pushpakumara/notification-service:${{ github.run_number }}|g" k8s/notification-service-depl.yaml
 
       - name: Commit and Push Changes back to Main
         run: |
