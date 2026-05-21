@@ -66,5 +66,13 @@ jobs:
                 
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           git commit -m "chore(cd): update notification-service image to ${{ github.run_number }} [skip ci]" || echo "No changes"  
-          git pull origin main --rebase
-          git push origin main
+
+      - name: Push with Retry
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 2
+          max_attempts: 5
+          retry_wait_seconds: 5
+          command: |
+            git pull origin main --rebase
+            git push origin main
