@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: product-service
-        image: pushpakumara/product-service:v15
+        image: pushpakumara/product-service:v16
         resources:
           limits:
             memory: "128Mi"
