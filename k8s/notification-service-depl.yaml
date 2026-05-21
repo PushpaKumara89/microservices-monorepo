@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notification-service
-        image: pushpakumara/notification-service:v8
+        image: pushpakumara/notification-service:v9
         resources:
           limits:
             memory: "128Mi"
