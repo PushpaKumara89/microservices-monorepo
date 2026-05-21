@@ -3,5 +3,3 @@ spring:
     name: notification-service
 server:
   port: 8083
-#ff
-
