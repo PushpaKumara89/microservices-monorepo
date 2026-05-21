@@ -1,4 +1,4 @@
-name: Product Service CI
+name: Notification Service CI
 
 # the magic is here
 # run this CI only change notification-service folder.
