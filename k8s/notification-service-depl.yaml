@@ -25,7 +25,7 @@ spec:
         - containerPort: 8083
         env:
           - name: ORDER_SERVICE_BASE_URL
-            value: order-service-svc
+            value: http://order-service-svc
           
 ---
 apiVersion: v1

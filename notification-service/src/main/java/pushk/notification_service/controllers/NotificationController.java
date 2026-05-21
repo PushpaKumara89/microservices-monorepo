@@ -32,7 +32,7 @@ public class NotificationController {
         try {
             String orderResponse = restTemplate.getForObject(orderServiceUrl+"/orders/host", String.class);
 
-            return "Notification-Service received response -> " + orderResponse +"ශ්‍රී ලංකා මාතා";
+            return "Notification-Service received response -> " + orderResponse +"ශ්‍රී ලංකා මාතා..";
         } catch (Exception e) {
             return "Error calling Order-Service: " + e.getMessage();
         }
