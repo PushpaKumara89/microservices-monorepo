@@ -34,7 +34,18 @@ jobs:
           mvn clean package
 
       # Docker Build (next step will push the image to docker hub)
-      - name: Build Docker Image
-        run: |
-          cd product-service
-          docker build -t product-service:${{ github.sha }} .
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./product-service
+          file: ./product-service/Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/product-service:v${{ github.run_number }}
