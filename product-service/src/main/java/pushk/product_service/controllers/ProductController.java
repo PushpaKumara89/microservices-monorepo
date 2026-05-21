@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController {
     @GetMapping
     public String getProducts() {
-        return "Product List from Product-Service";
+        return "Product List from Product-Service v4";
     }
 }

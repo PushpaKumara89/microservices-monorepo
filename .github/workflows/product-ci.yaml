@@ -49,3 +49,18 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/product-service:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/product-service:v${{ github.run_number }}
+
+      - name: Update Image Tag in K8s Manifest
+        run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          sed -i "s|image: pushpakumara/product-service:.*|image: pushpakumara/product-service:${{ github.run_number }}|g" k8s/product-service.yaml
+
+      - name: Commit and Push Changes back to Main
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add k8s/product-service.yaml
+
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          git commit -m "chore(cd): update product-service image to ${{ github.run_number }} [skip ci]" || echo "No changes"  
+          git push origin main

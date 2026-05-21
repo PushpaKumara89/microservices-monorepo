@@ -10,6 +10,6 @@ public class OrderController {
 
     @GetMapping
     public String getOrders() {
-        return "Order List from Order-Service";
+        return "Order List from Order-Service v4";
     }
 }

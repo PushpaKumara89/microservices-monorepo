@@ -10,6 +10,6 @@ public class NotificationController {
 
     @GetMapping
     public String getNotifications() {
-        return "Notification Status from Notification-Service";
+        return "Notification Status from Notification-Service v4";
     }
 }
