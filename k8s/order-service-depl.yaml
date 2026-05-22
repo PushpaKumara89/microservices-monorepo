@@ -17,30 +17,39 @@ spec:
       containers:
       - name: order-service
         image: pushpakumara/order-service:v18
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8082
+
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+
         startupProbe:
           httpGet:
             path: /actuator/health/liveness
             port: 8082
-          failureThreshold: 25
-          periodSeconds: 3
+          failureThreshold: 30
+          periodSeconds: 5
+
         livenessProbe:
           httpGet:
             path: /actuator/health/liveness
             port: 8082
-          failureThreshold: 3
+          initialDelaySeconds: 30
           periodSeconds: 10
+          failureThreshold: 3
+
         readinessProbe:
           httpGet:
             path: /actuator/health/readiness
             port: 8082
-          failureThreshold: 2
+          initialDelaySeconds: 10
           periodSeconds: 5
+          failureThreshold: 3
 ---
 apiVersion: v1
 kind: Service
