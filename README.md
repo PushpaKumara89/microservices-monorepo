@@ -64,3 +64,5 @@ kubectl apply -f K8s/notification-depl.yaml
 kubectl get pods -w
 ```
 ![ArgoCD Architecture](assets/argocd-dashboard.png)
+
+![ArgoCD Architecture](assets/cli.png)
