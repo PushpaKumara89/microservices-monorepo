@@ -2,6 +2,7 @@ spring:
   application:
     name: notification-service
 server:
+  address: 0.0.0.0
   port: 8083
 
 management:
@@ -14,6 +15,7 @@ management:
       exposure:
         include:
           - health
+          - info
 
 microservices:
   hostnames:
